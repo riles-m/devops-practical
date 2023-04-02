@@ -1,0 +1,38 @@
+name: Create Release Branch
+on:
+  pull_request:
+    types:
+      - closed
+  workflow_dispatch:
+    inputs:
+      release:
+        type: choice
+        description: "Bump Semantic Version"
+        options:
+          - "major"
+          - "minor"
+          - "patch"
+      tag:
+        description: "tag to base new release on"
+        required: true
+jobs:
+  create-new-tag-on-merge:
+    name: Create New Release Tag
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: create-new-tag-automated
+        run: ./.github/scripts/create-new-tag-automated.sh
+        shell: bash
+  create-new-tag-on-user-input:
+    name: Create New Release Tag Based on Previous Tag
+    runs-on: ubuntu-latest
+    if: inputs.tag
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: create-new-tag-manual
+        run: ./.github/scripts/create-new-tag-manual.sh
+        shell: bash

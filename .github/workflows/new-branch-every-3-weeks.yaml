@@ -1,0 +1,26 @@
+name: Create Release Branch
+on:
+  schedule:
+    - cron: '0 0 * * TUE' # Run every Tuesday
+  workflow_dispatch:
+jobs:
+  create-new-release-branch:
+    name: Create New Release Branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'write'
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+      - id: check-date
+        run: |
+          # First Tuesday or April 2023 is anchor date
+          ANCHOR_DATE=$(date +%s --date=20230404)
+          DATE=$(date +%s)
+          DATE_DIFF=$(( $DATE - $ANCHOR_DATE ))
+          [[ $(( $DATE_DIFF / 86400 % 21)) -eq  0 ]]
+        shell: bash
+      - id: create-new-release-branch
+        if: success()
+        run: ./.github/scripts/create-new-release-branch.sh
+        shell: bash

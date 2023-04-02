@@ -1,0 +1,36 @@
+name: Update Submodule
+on:
+  schedule:
+    - cron: '0 0 * * TUE' # Run every Tuesday
+  workflow_dispatch:
+jobs:
+  create-pr-to-update-submodule:
+    name: Create PR to update submodule
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'write'
+      pull-requests: 'write'
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - id: submodule-update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+      - id: create-pr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update Submodule devops-practical-submodule 
+          reviewers: riles-m
+          assignees: riles-m
+          delete-branch: true
+          base: main
+          labels: chore
+          title: Update Submodule devops-practical-submodule	
+          branch: update-submodule-devops-practical
+          get_diff: true
+          body: |
+            - Dependency updates

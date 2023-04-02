@@ -5,7 +5,7 @@ on:
       - closed
   workflow_dispatch:
     inputs:
-      release:
+      release_type:
         type: choice
         description: "Bump Semantic Version"
         options:
@@ -20,6 +20,8 @@ jobs:
     name: Create New Release Tag
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
+    permissions:
+      contents: 'write'
     steps:
       - id: checkout
         uses: actions/checkout@v2
@@ -30,9 +32,11 @@ jobs:
     name: Create New Release Tag Based on Previous Tag
     runs-on: ubuntu-latest
     if: inputs.tag
+    permissions:
+      contents: 'write'
     steps:
       - id: checkout
         uses: actions/checkout@v2
       - id: create-new-tag-manual
-        run: ./.github/scripts/create-new-tag-manual.sh
+        run: ./.github/scripts/create-new-tag-manual.sh ${{ inputs.tag }} ${{ inputs.release_type }}
         shell: bash

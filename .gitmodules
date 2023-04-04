@@ -1,0 +1,3 @@
+[submodule "devops-practical-submodule"]
+	path = devops-practical-submodule
+	url = git@github.com:riles-m/devops-practical-submodule.git

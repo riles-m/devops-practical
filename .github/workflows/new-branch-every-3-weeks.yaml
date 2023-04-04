@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
       - id: check-date
         run: |
-          # First Monday or April 2023 is anchor date
+          # First Tuesday or April 2023 is anchor date
           ANCHOR_DATE=$(date +%s --date=20230404)
           DATE=$(date +%s)
           DATE_DIFF=$(( $DATE - $ANCHOR_DATE ))

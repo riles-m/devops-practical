@@ -27,6 +27,7 @@ jobs:
           assignee: riles-m
           label: chore
           title: Update Submodule devops-practical-submodule	
+          branch: update-submodule-devops-practical
           get_diff: true
           body: |
             - Dependency updates

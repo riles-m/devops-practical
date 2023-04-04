@@ -15,7 +15,7 @@ jobs:
       - id: check-date
         run: |
           # First Monday or April 2023 is anchor date
-          ANCHOR_DATE=$(date +%s --date=20230403)
+          ANCHOR_DATE=$(date +%s --date=20230404)
           DATE=$(date +%s)
           DATE_DIFF=$(( $DATE - $ANCHOR_DATE ))
           [[ $(( $DATE_DIFF / 86400 % 21)) -eq  0 ]]

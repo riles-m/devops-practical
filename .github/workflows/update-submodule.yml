@@ -28,7 +28,7 @@ jobs:
           assignees: riles-m
           delete-branch: true
           base: main
-          label: chore
+          labels: chore
           title: Update Submodule devops-practical-submodule	
           branch: update-submodule-devops-practical
           get_diff: true

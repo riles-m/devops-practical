@@ -21,6 +21,7 @@ jobs:
       - id: create-pr
         uses: peter-evans/create-pull-request@v4
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update Submodule devops-practical-submodule 
           reviewer: riles-m
           assignee: riles-m

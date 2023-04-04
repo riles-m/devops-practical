@@ -24,8 +24,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update Submodule devops-practical-submodule 
-          reviewer: riles-m
-          assignee: riles-m
+          reviewers: riles-m
+          assignees: riles-m
           delete-branch: true
           base: main
           label: chore

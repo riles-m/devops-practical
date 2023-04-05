@@ -17,5 +17,4 @@ In this workflow a new release branch is created every 3 weeks (starting April 4
 #### Automatically Update Submodule
 `.github/workflows/update-submodule.yml`
 [Update Submodule](https://github.com/riles-m/devops-practical/actions/workflows/update-submodule.yml)  
-[submodule repo](https://github.com/riles-m/devops-practical-submodule)  
-Runs every week and creates a PR that updates submodule *devops-practical-submodule* to the latest commit on it's main branch.
+Runs every week and creates a PR that updates submodule [devops-practical-submodule](https://github.com/riles-m/devops-practical-submodule) to the latest commit on it's main branch.
